@@ -1,0 +1,630 @@
+<style>
+    .yotpo-full-width {
+        width: 100%;
+    }
+    .yotpo-centered-text {
+        text-align: center;
+    }
+    .yotpo-uppercase {
+        text-transform: uppercase;
+    }
+    .yotpo-underline {
+        text-decoration: underline;
+    }
+    .yotpo-bold {
+        font-weight: 500;
+    }
+    .yotpo-form {
+        width: 90%;
+    }
+    .yotpo-popup-main-font {
+        font-family: Montserrat, sans-serif;
+        letter-spacing: 0.1em;
+    }
+    .yotpo-input {
+        margin: 1% 0;
+        font-size: 1rem;
+        font-family: Montserrat;
+    }
+    .yotpo-hide {
+        display: none !important;
+    }
+    .yotpo-flex {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+    .yotpo-sms-collection-popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.3);
+        height: 100%;
+        z-index: 999999;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+    }
+    .yotpo-sms-collection-popup-store-logo {
+        width: 50%;
+        object-fit: contain;
+        margin-bottom: 5%;
+    }
+    .yotpo-sms-collection-popup-body {
+        position: relative;
+        background-image: url('{{"yotpo-popup-background.jpg"|asset_url}}');
+        background-repeat: no-repeat;
+        width: 30%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        margin-top: 5%;
+        padding: 2%;
+        background-size: cover;
+        background-position: bottom;
+    }
+    .yotpo-close {
+        position: absolute;
+        top: 2%;
+        right: 2%;
+        height: 1rem;
+        width: 1rem;
+        object-fit: contain;
+    }
+    .yotpo-popup-disclaimer {
+        width: 90%;
+        margin-top: 5%;
+        margin-bottom: 1%;
+        font-size: 0.625rem;
+    }
+    .yotpo-submit-btn-body {
+        font-size: 14px;
+    }
+    .yotpo-submit-btn-header {
+        font-size: 18px;
+    }
+    .yotpo-sms-collection-popup-primary-header {
+        /* font-size: 36px; */
+        font-size: 2.75rem;
+    }
+    .yotpo-sms-collection-popup-secondary-header {
+        /* font-size: 18px; */
+        font-size: 1.5rem;
+    }
+    .yotpo-sms-collection-popup-tertiary-header {
+        /* font-size: 16px; */
+        font-size: 1.15rem;
+    }
+    .yotpo-opt-out {
+        margin: 5%;
+        margin-top: auto;
+        font-size: 1rem;
+        font-family: Montserrat;
+        font-weight: 300;
+    }
+    .yotpo-pointer {
+        cursor: pointer;
+    }
+    .yotpo-submit-btn {
+        padding: 4%;
+        background-color: rgba(200, 230, 229, 0.8);
+        margin-bottom: 5%;
+    }
+    .yotpo-mobile-only {
+        display: none;
+    }
+    .yotpo-desktop-only {
+        display: flex;
+    }
+    .yotpo-error-msg {
+        color: red;
+        text-align: center;
+        font-size: 10px;
+        margin-bottom: 0;
+    }
+    .yotpo-placeholder {
+        min-height: 5rem;
+    }
+    .yotpo-mobile-submit-form {
+        position: relative;
+    }
+    .yotpo-complete-signup-image {
+        position: absolute;
+        left: 0;
+        top: 80%;
+    }
+    @media screen and (min-width: 2560px) {
+        .yotpo-sms-collection-popup-body {
+            width: 20%;
+        }
+    }
+    @media screen and (max-width: 1440px) {
+        .yotpo-complete-signup-image {
+            left: -8%;
+        }
+        .yotpo-submit-btn-body {
+            font-size: 12px;
+        }
+        .yotpo-sms-collection-popup-body {
+            width: 40%;
+            background-position: bottom;
+        }
+    }
+    @media screen and (max-width: 1024px) {
+        .yotpo-sms-collection-popup-body {
+            width: 60%;
+        }
+    }
+    @media screen and (max-width: 768px) {
+        .yotpo-mobile-only {
+            display: flex;
+        }
+        .yotpo-desktop-only {
+            display: none;
+        }
+        .yotpo-complete-signup-image {
+            position: absolute;
+            left: 0;
+            top: 70%;
+        }
+    }
+    @media screen and (max-width: 650px) {
+        .yotpo-sms-collection-popup-body {
+            width: 70%;
+        }
+        .yotpo-submit-btn-header {
+            font-size: 14px;
+        }
+        .yotpo-submit-btn-body {
+            font-size: 12px;
+        }
+        .yotpo-sms-collection-popup-store-logo {
+            margin-top: 5%;
+        }
+    }
+    @media screen and (max-width: 450px) {
+        .yotpo-sms-collection-popup-body {
+            width: 90%;
+            margin-top: 15%;
+        }
+        .yotpo-submit-btn-header {
+            font-size: 14px;
+        }
+        .yotpo-submit-btn-body {
+            font-size: 12px;
+        }
+        .yotpo-sms-collection-popup-primary-header {
+            font-size: 28px;
+        }
+        .yotpo-sms-collection-popup-secondary-header {
+            font-size: 14px;
+        }
+        .yotpo-sms-collection-popup-tertiary-header {
+            font-size: 12px;
+        }
+        .yotpo-complete-signup-image {
+            left: -5%;
+        }
+    }
+</style>
+<div class="yotpo-sms-collection-popup-overlay yotpo-full-width">
+    <div class="yotpo-sms-collection-popup-body">
+        <img
+            src="{{ 'yotpo-close.svg' | asset_url }}"
+            alt="close"
+            class="yotpo-close yotpo-pointer"
+        />
+        <img
+            src="{{ 'yotpo_store_logo.png' | asset_url }}"
+            alt="logo"
+            class="yotpo-sms-collection-popup-store-logo"
+        />
+        <div
+            class="yotpo-sms-collection-popup-secondary-header yotpo-popup-main-font yotpo-full-width yotpo-centered-text yotpo-uppercase"
+        >
+            sign up to
+        </div>
+        <div
+            class="yotpo-sms-collection-popup-primary-header yotpo-popup-main-font yotpo-full-width yotpo-centered-text yotpo-uppercase yotpo-bold"
+        >
+            GET 10% OFF
+        </div>
+        <div
+            class="yotpo-sms-collection-popup-tertiary-header yotpo-popup-main-font yotpo-full-width yotpo-centered-text yotpo-uppercase"
+        >
+            Your Order
+        </div>
+        <div class="yotpo-popup-disclaimer yotpo-hide">
+            By signing up via text you agree to receive recurring automated
+            marketing messages at the phone number provided. Consent is not a
+            condition of purchase. Reply STOP to unsubscribe. HELP for help. Msg
+            & Data rates may apply. View Privacy Policy & ToS
+        </div>
+        <form
+            class="yotpo-form yotpo-email-submit-form yotpo-flex yotpo-hide"
+        ></form>
+        <div class="yotpo-form yotpo-mobile-submit-form yotpo-flex yotpo-hide">
+            <img
+                src="{{ 'yotpo_complete_signup_imge.svg' | asset_url }}"
+                alt="complete signup"
+                class="yotpo-complete-signup-image"
+            />
+        </div>
+
+        <div
+            class="yotpo-opt-out yotpo-full-width yotpo-centered-text yotpo-uppercase yotpo-popup-main-font yotpo-underline yotpo-pointer yotpo-hide"
+        >
+            no thanks
+        </div>
+        <div class="yotpo-placeholder yotpo-full-width"></div>
+    </div>
+</div>
+<script>
+    /// localStorage.setItem("yotpoHasClientEmail", "false")
+    /// localStorage.setItem("yotpoHasClientEmail", "true")
+    /// localStorage.setItem("yotpoCollectionCompleted", "true");
+    /// localStorage.setItem("yotpoCollectionCompleted", "false");
+
+    const formId = ######;
+    const quickSubscribePhoneNumber = "######";
+    const formFields = {
+        emailSubmitForm: {
+            inputs: [
+                {
+                    type: "text",
+                    placeholder: "Email Address",
+                    value: "",
+                    name: "yotpo-email-submit",
+                    required: "required",
+                },
+            ],
+            submitBtn: {
+                header: "CONTINUE",
+                body: "",
+            },
+            errorMsg:
+                "Sorry, the email you provided is not valid. Please try again.",
+            quickSubmit: {
+                text: "Tap to Subscribe Email",
+            },
+        },
+        mobileSubmitForm: {
+            inputs: [
+                {
+                    type: "text",
+                    placeholder: "Mobile Number",
+                    value: "",
+                    name: "yotpo-mobile-submit",
+                    required: "required",
+                },
+            ],
+            submitBtn: {
+                header: "GET 10% OFF",
+                body: "when you sign up for email and texts",
+            },
+            errorMsg:
+                "Sorry, the number you provided is not valid. Please try again.",
+            quickSubmit: {
+                text: "Tap to Subscribe Mobile",
+            },
+        },
+    };
+    $(".yotpo-sms-collection-popup-overlay").appendTo("body");
+    revealForm(
+        "yotpoHasClientEmail",
+        "true",
+        ".yotpo-mobile-submit-form",
+        ".yotpo-email-submit-form",
+        [".yotpo-popup-disclaimer"],
+        [".yotpo-opt-out"],
+        "yotpoCollectionCompleted"
+    );
+
+    yotpoBuildForm(
+        ".yotpo-email-submit-form",
+        formFields.emailSubmitForm,
+        "yotpo-full-width yotpo-input yotpo-bold",
+        "yotpo-submit-btn yotpo-flex yotpo-full-width yotpo-pointer",
+        "yotpo-submit-btn yotpo-flex yotpo-full-width yotpo-centered-text yotpo-hide",
+        onEmailSubmit,
+        onEmailQuickSubscribe
+    );
+    yotpoBuildForm(
+        ".yotpo-mobile-submit-form",
+        formFields.mobileSubmitForm,
+        "yotpo-full-width yotpo-input yotpo-bold yotpo-desktop-only",
+        "yotpo-submit-btn yotpo-flex yotpo-full-width yotpo-desktop-only yotpo-pointer",
+        "yotpo-submit-btn yotpo-flex yotpo-full-width yotpo-centered-text yotpo-mobile-only",
+        onMobileSubmit,
+        onMobileQuickSubscribe
+    );
+
+    yotpoClose(".yotpo-close", ".yotpo-sms-collection-popup-overlay");
+    yotpoUnsubscribe(".yotpo-opt-out", ".yotpo-sms-collection-popup-overlay");
+
+    function yotpoBuildForm(
+        selector,
+        formData,
+        inputClassNames,
+        desktopSubmitClassNames,
+        mobileSubmitClassNames,
+        submitHandler,
+        mobileSubmitHandler
+    ) {
+        formData.inputs.forEach((config) => {
+            $(selector).append(
+                $("<input>", config)
+                    .addClass(inputClassNames)
+                    .keydown((e) => $(".yotpo-error-msg").remove())
+            );
+        });
+        $(selector).append(
+            $("<div>")
+                .addClass(desktopSubmitClassNames)
+                .click((e) => {
+                    $(selector).submit((e) => {
+                        e.preventDefault();
+                    });
+                    submitHandler(e, formData.inputs);
+                })
+                .append(
+                    $("<div>")
+                        .addClass(
+                            "yotpo-submit-btn-header yotpo-popup-main-font yotpo-full-width yotpo-centered-text yotpo-bold"
+                        )
+                        .text(formData.submitBtn.header),
+                    $("<div>")
+                        .addClass(
+                            "yotpo-submit-btn-body yotpo-popup-main-font yotpo-full-width yotpo-centered-text"
+                        )
+                        .text(formData.submitBtn.body)
+                ),
+            $("<div>")
+                .addClass(mobileSubmitClassNames)
+                .click(mobileSubmitHandler)
+                .append(
+                    $("<div>")
+                        .addClass(
+                            "yotpo-submit-btn-header yotpo-popup-main-font yotpo-bold"
+                        )
+                        .text(formData.quickSubmit.text)
+                )
+        );
+    }
+
+    function yotpoClose(btnSelector, popupSelector) {
+        $(btnSelector).click(() => $(popupSelector).remove());
+    }
+
+    function yotpoUnsubscribe(btnSelector, popupSelector) {
+        $(btnSelector).click(() => {
+            $(popupSelector).remove();
+            localStorage.setItem("yotpoCollectionCompleted", "true");
+        });
+    }
+
+    function registerEmail(opts) {
+        fetch("https://api.smsbump.com/v2/formsPublic/emailSubscribe", {
+            method: "post",
+            body: JSON.stringify(opts),
+            headers: {
+                "Content-Type": "application/json",
+                "X-SMSBump-Platform": "shopify",
+            },
+        })
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                console.log(data);
+            })
+            .catch(function () {
+                console.log("error");
+            });
+    }
+
+    function onMobileQuickSubscribe() {
+        document.location.href = `sms:${quickSubscribePhoneNumber};?&body=SUBSCRIBE${formId}`;
+    }
+
+    function onEmailQuickSubscribe() {}
+
+    function registerPhoneNumber(opts) {
+        fetch("https://api.smsbump.com/v2/formsPublic/subscribe", {
+            method: "post",
+            body: JSON.stringify(opts),
+            headers: {
+                "Content-Type": "application/json",
+                "X-SMSBump-Platform": "shopify",
+            },
+        })
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                console.log(data);
+            });
+    }
+
+    function revealForm(
+        localStorageKey,
+        localStorageRequiredValue,
+        formIfValueExists,
+        formIfValueDoesntExist,
+        valueExistsFormDependencies,
+        valueDoesntExistFormDependencies,
+        localStorageCompletedKey
+    ) {
+        if (localStorage.getItem(localStorageCompletedKey) === "true") {
+            $(".yotpo-sms-collection-popup-overlay").remove();
+        } else {
+            if (
+                localStorage.getItem(localStorageKey) ===
+                localStorageRequiredValue
+            ) {
+                $(formIfValueExists).removeClass("yotpo-hide");
+                $(formIfValueDoesntExist).addClass("yotpo-hide");
+                valueExistsFormDependencies.forEach((element) => {
+                    $(element).removeClass("yotpo-hide");
+                });
+                valueDoesntExistFormDependencies.forEach((element) => {
+                    $(element).addClass("yotpo-hide");
+                });
+            } else {
+                $(formIfValueExists).addClass("yotpo-hide");
+                $(formIfValueDoesntExist).removeClass("yotpo-hide");
+                valueExistsFormDependencies.forEach((element) => {
+                    $(element).addClass("yotpo-hide");
+                });
+                valueDoesntExistFormDependencies.forEach((element) => {
+                    $(element).removeClass("yotpo-hide");
+                });
+            }
+        }
+    }
+
+    function onEmailSubmit(e, inputs) {
+        $(".yotpo-error-msg").remove();
+        let formValues = [];
+        inputs.forEach((input) => {
+            formValues.push({
+                [input.name]: $(`input[name=${input.name}]`).val(),
+            });
+            localStorage.setItem(
+                [input.name],
+                $(`input[name=${input.name}]`).val()
+            );
+        });
+        if (
+            isEmailFormValid(
+                formValues.find((item) =>
+                    Object.keys(item).includes("yotpo-email-submit")
+                )["yotpo-email-submit"]
+            ).isValid
+        ) {
+            registerEmail({
+                email: formValues.find((item) =>
+                    Object.keys(item).includes("yotpo-email-submit")
+                )["yotpo-email-submit"],
+                form_id: formId,
+            });
+            localStorage.setItem("yotpoHasClientEmail", "true");
+            revealForm(
+                "yotpoHasClientEmail",
+                "true",
+                ".yotpo-mobile-submit-form",
+                ".yotpo-email-submit-form",
+                [".yotpo-popup-disclaimer"],
+                [".yotpo-opt-out"]
+            );
+        } else {
+            $(".yotpo-email-submit-form").prepend(
+                $("<p>")
+                    .addClass("yotpo-error-msg")
+                    .text(
+                        isEmailFormValid(
+                            formValues.find((item) =>
+                                Object.keys(item).includes("yotpo-email-submit")
+                            )["yotpo-email-submit"]
+                        ).reason
+                    )
+            );
+        }
+    }
+
+    function onMobileSubmit(e, inputs) {
+        let formValues = [];
+        inputs.forEach((input) => {
+            formValues.push({
+                [input.name]: $(`input[name=${input.name}]`).val(),
+                "yotpo-email-submit": localStorage.getItem(
+                    "yotpo-email-submit"
+                ),
+            });
+        });
+        if (
+            isMobileFormValid(
+                formValues.find((item) =>
+                    Object.keys(item).includes("yotpo-mobile-submit")
+                )["yotpo-mobile-submit"]
+            ).isValid
+        ) {
+            registerPhoneNumber({
+                form_id: formId,
+                phone: formValues.find((item) =>
+                    Object.keys(item).includes("yotpo-mobile-submit")
+                )["yotpo-mobile-submit"],
+                email: formValues.find((item) =>
+                    Object.keys(item).includes("yotpo-email-submit")
+                )["yotpo-email-submit"],
+                country: "US",
+                source: "popup",
+            });
+            localStorage.setItem("yotpoCollectionCompleted", "true");
+            $(".yotpo-sms-collection-popup-overlay").remove();
+        } else {
+            $(".yotpo-mobile-submit-form").prepend(
+                $("<p>")
+                    .addClass("yotpo-error-msg")
+                    .text(
+                        isMobileFormValid(
+                            formValues.find((item) =>
+                                Object.keys(item).includes(
+                                    "yotpo-mobile-submit"
+                                )
+                            )["yotpo-mobile-submit"]
+                        ).reason
+                    )
+            );
+        }
+    }
+
+    function isEmailFormValid(value) {
+        if (value.length === 0) {
+            return {
+                isValid: false,
+                reason: "Please submit your email to continue",
+            };
+        } else {
+            if (!value.includes("@")) {
+                return {
+                    isValid: false,
+                    reason: "Please submit a valid email address",
+                };
+            } else {
+                return {
+                    isValid: true,
+                };
+            }
+        }
+    }
+
+    function isMobileFormValid(value) {
+        if (value.length === 0) {
+            return {
+                isValid: false,
+                reason: "Please submit your number to continue",
+            };
+        } else {
+            if (value.length < 5) {
+                return {
+                    isValid: false,
+                    reason: "Please submit a valid phone number",
+                };
+            } else {
+                if (!/^\d+$/.test(value)) {
+                    return {
+                        isValid: false,
+                        reason: "Please submit a valid phone number",
+                    };
+                } else {
+                    return {
+                        isValid: true,
+                    };
+                }
+            }
+        }
+    }
+</script>
